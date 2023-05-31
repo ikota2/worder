@@ -1,0 +1,29 @@
+.mainContainer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	border: 2px solid #000;
+	border-radius: 0.5rem;
+	min-width: 400px;
+}
+
+.form {
+	width: 50%;
+}
+.container {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.btn {
+	width: 100px;
+}
