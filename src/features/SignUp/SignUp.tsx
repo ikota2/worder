@@ -1,4 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
 import Input from '../../components/Input/Input';
 import { useAuth } from '../../contexts/AuthContext';
 import { auth } from '../../firebase';
@@ -11,7 +13,9 @@ const SignUp = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signup, currentUser } = useAuth();
+  const { signup } = useAuth();
+  const history = useHistory();
+
   async function handleSubmit (e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -23,6 +27,7 @@ const SignUp = () => {
       setError('');
       setLoading(true);
       await signup(auth, email, password);
+      history.push('/');
     } catch {
       setError('Failed to create an account')
     } finally {
@@ -36,7 +41,6 @@ const SignUp = () => {
         <h2>Sign Up</h2>
         {loading && <span style={{fontWeight: 800}}>Loading.....</span>}
         {error && <span style={{fontWeight: 800}}>{error}</span>}
-        {<h3>{currentUser.email}</h3>}
         <form onSubmit={handleSubmit} className={classes.form}>
           <Input
             type="email"
@@ -69,7 +73,7 @@ const SignUp = () => {
           </div>
         </form>
         <div className={classes.container}>
-          Already have an account? Log In
+          Already have an account? <Link to="/login">Log In</Link>
         </div>
       </div>
     </div>
