@@ -10,9 +10,18 @@ interface Props {
   required?: boolean;
   type?: string;
   minLength?: number;
+  placeholder?: string;
 }
 
-const Input: FC<Props> = ({type = 'text', label, value, onChange, name, required = false, minLength = 0}) => {
+const Input: FC<Props> = ({
+    type = 'text',
+    label,
+    value,
+    onChange, name,
+    required = false,
+    minLength = 0,
+    placeholder
+  }) => {
   return (
       <div className={classes.container}>
         <input
@@ -21,7 +30,7 @@ const Input: FC<Props> = ({type = 'text', label, value, onChange, name, required
           name={name}
           minLength={minLength}
           autoComplete="off"
-          placeholder=""
+          placeholder={placeholder || ''}
           className={classes.input}
           value={value}
           onChange={e => onChange(e)}
